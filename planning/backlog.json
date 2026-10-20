@@ -1,0 +1,545 @@
+{
+  "project_slug": "edgedefect",
+  "project_name": "EdgeDefect",
+  "track": "quick",
+  "first_public_result_month": 4,
+  "total_hours": 416,
+  "reserve_hours": 64,
+  "milestones": [
+    {
+      "id": "M1",
+      "title": "Scope, rights and contracts",
+      "description": "Month 1 target; ED-001–006: 48h work. Activate only on future selection; one-family scope, rights and CPU contracts."
+    },
+    {
+      "id": "M2",
+      "title": "Data and CPU baselines",
+      "description": "Month 2 target with early-month-3 spill as needed; ED-007–013: 80h work. Small exact-label synthetic corpus and two bounded engines."
+    },
+    {
+      "id": "M3",
+      "title": "Frozen evaluation",
+      "description": "Month 3 target; cumulative early phases may finish 4h into week 14. ED-014–019: 60h work. Frozen policy, evaluation, rights decision and CLI."
+    },
+    {
+      "id": "M4",
+      "title": "Functional public v0.1",
+      "description": "Month 4, by week 17; ED-020–024: 52h work. Runnable local demo, package, reports and authorized publication handoff; cumulative work plus reserve 272h."
+    },
+    {
+      "id": "M5",
+      "title": "Review workflow and deployment",
+      "description": "Month 5 target; ED-025–028: 60h work. Persistence, batches, deployment and optional feedback."
+    },
+    {
+      "id": "M6",
+      "title": "Pilot readiness and decision",
+      "description": "Months 5–6; ED-029–032: 52h work. Pilot protocol or evidence-gap branch, operations, security, stop/go. Months 7–12 are recovery using remaining original hours only."
+    }
+  ],
+  "issues": [
+    {
+      "id": "ED-001",
+      "title": "Record future activation and portfolio capacity",
+      "body": "### Goal\n\nEstablish the start condition.\n\n### Implementation steps\n\nOn future selection record activation, capacity and calendar gates; create the hours ledger.\n\n### Expected output paths\n\ndocs/activation.md; docs/budget.md; README.md\n\n### Acceptance criteria\n\nExplicit selection evidence exists; at most 16h/week portfolio-wide; first functional release targets month 4 within months 3–12.\n\n### Validation and review evidence\n\nReview date arithmetic and reconcile backlog totals. Receipt: docs/evidence/ED-001.md (commands, results, hashes, hours, review).\n\n### Dependencies\n\nNone; future explicit selection required.\n\n### Data/method pitfalls\n\nRepository creation is not activation; alternative projects cannot each claim the same capacity.",
+      "estimate_hours": 4,
+      "milestone": "M1",
+      "depends_on": [],
+      "labels": [
+        "type:task",
+        "priority:P1"
+      ],
+      "phase": "scope"
+    },
+    {
+      "id": "ED-002",
+      "title": "Define the one-family workflow and discovery protocol",
+      "body": "### Goal\n\nSpecify a falsifiable operator benefit.\n\n### Implementation steps\n\nMap matte_plate_v1 inputs, manual comparator, four result actions, error costs and exclusions; draft three optional feedback questions.\n\n### Expected output paths\n\ndocs/product/use-case.md; docs/product/discovery-script.md; docs/product/assumptions.md\n\n### Acceptance criteria\n\nOne operator/family/workflow is specified; cost assumptions and stop criteria are explicit.\n\n### Validation and review evidence\n\nWalk through nominal, anomaly and invalid-input scenarios; review discovery script. Receipt: docs/evidence/ED-002.md (commands, results, hashes, hours, review).\n\n### Dependencies\n\nED-001\n\n### Data/method pitfalls\n\nNo collection/annotation requirement. Outreach needs execution-time authorization; missing interviews remain unvalidated evidence.",
+      "estimate_hours": 10,
+      "milestone": "M1",
+      "depends_on": [
+        "ED-001"
+      ],
+      "labels": [
+        "type:task",
+        "priority:P1"
+      ],
+      "phase": "discovery"
+    },
+    {
+      "id": "ED-003",
+      "title": "Audit code, runtime, model and data rights",
+      "body": "### Goal\n\nMake rights fail closed.\n\n### Implementation steps\n\nBuild asset register; check exact intended uses, ownership and proposed MIT/CC0 decisions; document wheel/transitive notice checks.\n\n### Expected output paths\n\nlicenses/assets.json; licenses/README.md; docs/rights-decisions.md; LICENSE and data/LICENSE after ownership decision\n\n### Acceptance criteria\n\nSeparate train/evaluate/commercial_rnd/redistribute permissions; unknown/denied rights excluded; synthetic finish remains possible.\n\n### Validation and review evidence\n\nReview linked primary terms and allowed/unknown/denied examples. Receipt: docs/evidence/ED-003.md (commands, results, hashes, hours, review).\n\n### Dependencies\n\nED-001\n\n### Data/method pitfalls\n\nExisting human annotations are allowed; noncommercial terms do not automatically permit product R&D. Runtime terms do not license weights.",
+      "estimate_hours": 8,
+      "milestone": "M1",
+      "depends_on": [
+        "ED-001"
+      ],
+      "labels": [
+        "type:task",
+        "priority:P1"
+      ],
+      "phase": "rights"
+    },
+    {
+      "id": "ED-004",
+      "title": "Timebox learning and inspect CPU constraints",
+      "body": "### Goal\n\nReduce implementation uncertainty.\n\n### Implementation steps\n\nSpend 3h on array/raster conventions, 3h on calibration/metrics and 2h recording actual hardware plus a worked residual example.\n\n### Expected output paths\n\ndocs/learning-notes.md; docs/environment-assumptions.md\n\n### Acceptance criteria\n\nNotes cover masks, leakage, nominal-only fitting and score non-probability; actual hardware is distinguished from assumptions.\n\n### Validation and review evidence\n\nReview hand-computable residual and nearest-rank examples against the plan. Receipt: docs/evidence/ED-004.md (commands, results, hashes, hours, review).\n\n### Dependencies\n\nED-001\n\n### Data/method pitfalls\n\nNo GPU, camera purchase, paid course or pretrained model prerequisite; unimplemented latency is not measured evidence.",
+      "estimate_hours": 8,
+      "milestone": "M1",
+      "depends_on": [
+        "ED-001"
+      ],
+      "labels": [
+        "type:task",
+        "priority:P1"
+      ],
+      "phase": "learning"
+    },
+    {
+      "id": "ED-005",
+      "title": "Freeze schemas, profile and contract fixtures",
+      "body": "### Goal\n\nFix boundaries for conservative implementers.\n\n### Implementation steps\n\nCreate all seven schema_version=1 records, matching Python validators and matte_plate_v1 profile; add invalid fixtures.\n\n### Expected output paths\n\nschemas/*.schema.json; src/edgedefect/contracts.py; configs/matte_plate_v1.json; tests/test_contracts.py\n\n### Acceptance criteria\n\nRecords round-trip; unknown versions, NaN, escaped paths, invalid thresholds and incompatible hashes fail.\n\n### Validation and review evidence\n\nRun pytest tests/test_contracts.py; review valid/invalid fixtures. Receipt: docs/evidence/ED-005.md (commands, results, hashes, hours, review).\n\n### Dependencies\n\nED-002, ED-003\n\n### Data/method pitfalls\n\nNo physical units or factory acceptance semantics. Schema-breaking changes escalate to Astra; labels never enter scoring inputs.",
+      "estimate_hours": 10,
+      "milestone": "M1",
+      "depends_on": [
+        "ED-002",
+        "ED-003"
+      ],
+      "labels": [
+        "type:task",
+        "priority:P1"
+      ],
+      "phase": "contracts"
+    },
+    {
+      "id": "ED-006",
+      "title": "Create minimal CPU package and rights gate",
+      "body": "### Goal\n\nMake installation and asset access reproducible.\n\n### Implementation steps\n\nCreate Python 3.12 src package and hash-locked dependencies; implement rights assertion and CLI check, including build/test/validation dependency notices.\n\n### Expected output paths\n\npyproject.toml; requirements.lock; src/edgedefect/rights.py; scripts/check.ps1; tests/test_rights.py\n\n### Acceptance criteria\n\nFresh environment imports successfully; denied/unknown required permission fails before reading assets; no deep-learning dependencies.\n\n### Validation and review evidence\n\nInstall isolated environment; run contract and rights tests; record versions. Receipt: docs/evidence/ED-006.md (commands, results, hashes, hours, review).\n\n### Dependencies\n\nED-003, ED-004, ED-005\n\n### Data/method pitfalls\n\nAudit binary/transitive components separately; no implicit dataset or checkpoint downloads.",
+      "estimate_hours": 8,
+      "milestone": "M1",
+      "depends_on": [
+        "ED-003",
+        "ED-004",
+        "ED-005"
+      ],
+      "labels": [
+        "type:task",
+        "priority:P1"
+      ],
+      "phase": "foundation"
+    },
+    {
+      "id": "ED-007",
+      "title": "Generate deterministic nominal plates",
+      "body": "### Goal\n\nCreate self-contained nominal images.\n\n### Implementation steps\n\nImplement seeded plate/background appearance, pose transforms and metadata; generate 64 smoke images and an automatic contact sheet.\n\n### Expected output paths\n\nsrc/edgedefect/synthetic.py; configs/smoke.json; tests/test_generator_nominal.py; runs/smoke/manifest.json\n\n### Acceptance criteria\n\nRepeated pinned runs match hashes; empty nominal masks and known transforms exist; no external asset reads.\n\n### Validation and review evidence\n\nRun nominal generator tests and duplicate generation; inspect fixed sheets. Receipt: docs/evidence/ED-007.md (commands, results, hashes, hours, review).\n\n### Dependencies\n\nED-006\n\n### Data/method pitfalls\n\n2D appearance is not physical evidence. Correct generator code and regenerate instead of manually editing or selecting samples.",
+      "estimate_hours": 12,
+      "milestone": "M2",
+      "depends_on": [
+        "ED-006"
+      ],
+      "labels": [
+        "type:task",
+        "priority:P1"
+      ],
+      "phase": "data"
+    },
+    {
+      "id": "ED-008",
+      "title": "Generate scratch/stain mechanisms and exact masks",
+      "body": "### Goal\n\nProduce automatic anomaly ground truth.\n\n### Implementation steps\n\nAdd shared-nuisance clean/defective pairs, warped/clipped masks, support/visibility flags and independent quality corruptions.\n\n### Expected output paths\n\nsrc/edgedefect/synthetic.py; configs/defects.json; tests/test_generator_masks.py\n\n### Acceptance criteria\n\nMasks match injected geometry; hidden/outside-ROI defects are distinguished; nominal masks are empty; labels are automatic.\n\n### Validation and review evidence\n\nTest identity, rotation, clipping, occlusion and nonempty masks; inspect fixed overlays. Receipt: docs/evidence/ED-008.md (commands, results, hashes, hours, review).\n\n### Dependencies\n\nED-007\n\n### Data/method pitfalls\n\nMechanism masks are not physical defect boundaries after blur; quality corruption is not automatically a defect.",
+      "estimate_hours": 12,
+      "milestone": "M2",
+      "depends_on": [
+        "ED-007"
+      ],
+      "labels": [
+        "type:task",
+        "priority:P1"
+      ],
+      "phase": "data"
+    },
+    {
+      "id": "ED-009",
+      "title": "Enforce grouped splits and freeze final recipes",
+      "body": "### Goal\n\nPrevent leakage before scaling.\n\n### Implementation steps\n\nCreate 800 development images: 400 nominal train, 200 dev, 200 nominal calibration. Freeze 1200 final recipes before selection; enforce group/hash validation and robustness caps.\n\n### Expected output paths\n\nconfigs/development.json; configs/final.json; configs/robustness.json; src/edgedefect/datasets.py; tests/test_splits.py; reports/test-recipe-freeze.json\n\n### Acceptance criteria\n\nPairs/variants never cross splits; counts match; deliberate overlap fails; final recipes remain unexposed.\n\n### Validation and review evidence\n\nRun split tests and validate-data on smoke/development. Receipt: docs/evidence/ED-009.md (commands, results, hashes, hours, review).\n\n### Dependencies\n\nED-008, ED-005\n\n### Data/method pitfalls\n\nDifferent seeds alone do not establish independence; no manual curation or final-test browsing.",
+      "estimate_hours": 12,
+      "milestone": "M2",
+      "depends_on": [
+        "ED-008",
+        "ED-005"
+      ],
+      "labels": [
+        "type:task",
+        "priority:P1"
+      ],
+      "phase": "data"
+    },
+    {
+      "id": "ED-010",
+      "title": "Decode inputs and rectify the inspection ROI",
+      "body": "### Goal\n\nProvide bounded aligned arrays.\n\n### Implementation steps\n\nDecode PNG/JPEG with size/orientation rules; locate one convex plate, rectify to 256 square and retain invertible source transform with eroded ROI.\n\n### Expected output paths\n\nsrc/edgedefect/ingest.py; src/edgedefect/geometry.py; tests/test_ingest_geometry.py\n\n### Acceptance criteria\n\nMalformed/oversize/multiple-object/singular inputs fail; fixture corners map within one canonical pixel.\n\n### Validation and review evidence\n\nRun geometry tests across pose, dimensions, orientation and invalid quadrilaterals. Receipt: docs/evidence/ED-010.md (commands, results, hashes, hours, review).\n\n### Dependencies\n\nED-006, ED-005, ED-009\n\n### Data/method pitfalls\n\nReject unsupported backgrounds/reflective parts; never infer missing geometry from generator labels or masks.",
+      "estimate_hours": 8,
+      "milestone": "M2",
+      "depends_on": [
+        "ED-006",
+        "ED-005",
+        "ED-009"
+      ],
+      "labels": [
+        "type:task",
+        "priority:P1"
+      ],
+      "phase": "inference"
+    },
+    {
+      "id": "ED-011",
+      "title": "Implement quality gates and retake reasons",
+      "body": "### Goal\n\nAvoid scoring unsuitable images.\n\n### Implementation steps\n\nImplement blur/exposure/geometry checks, envelope limits and reason precedence; select thresholds using development fixtures and freeze their evidence.\n\n### Expected output paths\n\nsrc/edgedefect/quality.py; configs/matte_plate_v1.json; tests/test_quality.py; reports/quality-development.json\n\n### Acceptance criteria\n\nFailed quality bypasses scoring with null score; all threshold boundaries have deterministic reasons.\n\n### Validation and review evidence\n\nRun quality tests and development confusion table, including combined failures. Receipt: docs/evidence/ED-011.md (commands, results, hashes, hours, review).\n\n### Dependencies\n\nED-010, ED-009\n\n### Data/method pitfalls\n\nLow-texture surfaces can be sharp; measure false retakes. Quality heuristics cannot prove domain membership.",
+      "estimate_hours": 12,
+      "milestone": "M2",
+      "depends_on": [
+        "ED-010",
+        "ED-009"
+      ],
+      "labels": [
+        "type:task",
+        "priority:P1"
+      ],
+      "phase": "inference"
+    },
+    {
+      "id": "ED-012",
+      "title": "Implement robust template-residual baseline",
+      "body": "### Goal\n\nEstablish the default objective CPU baseline.\n\n### Implementation steps\n\nImplement specified normalization, nominal median/MAD fit, residual/filter/top-1% score and non-pickle parameter bundle with provenance.\n\n### Expected output paths\n\nsrc/edgedefect/engines/base.py; src/edgedefect/engines/template.py; tests/test_template.py; runs/template/model.json\n\n### Acceptance criteria\n\nFit uses nominal train only; save/load scores agree within 1e-6; floors prevent nonfinite scores; outside-ROI pixels are excluded.\n\n### Validation and review evidence\n\nTest hand-computable arrays, constant images, defect injection and corrupt bundles. Receipt: docs/evidence/ED-012.md (commands, results, hashes, hours, review).\n\n### Dependencies\n\nED-011, ED-009\n\n### Data/method pitfalls\n\nNo final-data tuning or probability claims; parameter provenance remains separate from runtime licensing.",
+      "estimate_hours": 12,
+      "milestone": "M2",
+      "depends_on": [
+        "ED-011",
+        "ED-009"
+      ],
+      "labels": [
+        "type:task",
+        "priority:P1"
+      ],
+      "phase": "model"
+    },
+    {
+      "id": "ED-013",
+      "title": "Implement one handcrafted patch comparator",
+      "body": "### Goal\n\nEvaluate one bounded alternative.\n\n### Implementation steps\n\nImplement 16x16 stride-8 mean/std/gradient descriptors, nominal diagonal statistics and score maps; permit at most one development adjustment.\n\n### Expected output paths\n\nsrc/edgedefect/engines/patch.py; configs/engines.json; tests/test_patch.py; runs/patch/model.json\n\n### Acceptance criteria\n\nSame model contract, finite deterministic output and nominal-only fit; no pretrained weights/framework.\n\n### Validation and review evidence\n\nRun descriptor, constant-input, reload and ROI-edge tests; record latency. Receipt: docs/evidence/ED-013.md (commands, results, hashes, hours, review).\n\n### Dependencies\n\nED-012\n\n### Data/method pitfalls\n\nThis is not PatchCore. A weaker comparator result is valid evidence, not permission for unlimited model search.",
+      "estimate_hours": 12,
+      "milestone": "M2",
+      "depends_on": [
+        "ED-012"
+      ],
+      "labels": [
+        "type:task",
+        "priority:P1"
+      ],
+      "phase": "model"
+    },
+    {
+      "id": "ED-014",
+      "title": "Select the engine on development evidence",
+      "body": "### Goal\n\nFreeze a justified choice before final testing.\n\n### Implementation steps\n\nCompare template, patch and trivial controls; apply declared gain/coverage/latency rules; log all trials and freeze pixel threshold on development.\n\n### Expected output paths\n\nsrc/edgedefect/compare.py; reports/model-selection.json; reports/freeze.json; tests/test_selection.py\n\n### Acceptance criteria\n\nPatch requires >=0.05 recall gain under stated limits; otherwise template remains; no final data read.\n\n### Validation and review evidence\n\nTest winning/losing/tied alternatives and replay compare. Receipt: docs/evidence/ED-014.md (commands, results, hashes, hours, review).\n\n### Dependencies\n\nED-012, ED-013\n\n### Data/method pitfalls\n\nAccuracy alone is inadequate; do not select on public test labels or silently open another model search.",
+      "estimate_hours": 10,
+      "milestone": "M3",
+      "depends_on": [
+        "ED-012",
+        "ED-013"
+      ],
+      "labels": [
+        "type:task",
+        "priority:P1"
+      ],
+      "phase": "evaluation"
+    },
+    {
+      "id": "ED-015",
+      "title": "Calibrate nominal thresholds and decision policy",
+      "body": "### Goal\n\nSeparate score from operational decision.\n\n### Implementation steps\n\nUse 200 nominal calibration images for nearest-rank 90th/99th thresholds; implement precedence, nominal percentile and compatibility checks; finalize freeze receipt.\n\n### Expected output paths\n\nsrc/edgedefect/policy.py; runs/policy.json; reports/freeze.json; tests/test_policy.py\n\n### Acceptance criteria\n\nThresholds use calibration only; ties and four decisions are explicit; quality failure overrides scoring.\n\n### Validation and review evidence\n\nTest boundaries, quantiles, ties, missing bundles and hash mismatches. Receipt: docs/evidence/ED-015.md (commands, results, hashes, hours, review).\n\n### Dependencies\n\nED-014\n\n### Data/method pitfalls\n\nNominal percentiles are not defect probabilities; changes after final exposure require a documented new test cycle.",
+      "estimate_hours": 10,
+      "milestone": "M3",
+      "depends_on": [
+        "ED-014"
+      ],
+      "labels": [
+        "type:task",
+        "priority:P1"
+      ],
+      "phase": "policy"
+    },
+    {
+      "id": "ED-016",
+      "title": "Run protected evaluation and statistical controls",
+      "body": "### Goal\n\nProduce meaningful release metrics.\n\n### Implementation steps\n\nImplement tie-aware ROC/PR, Wilson intervals, confusion tables, pixel AP/IoU and grouped bootstrap; unseal final only after freeze checks.\n\n### Expected output paths\n\nsrc/edgedefect/evaluate.py; tests/test_metrics.py; tests/test_evaluation_isolation.py; reports/final/report.json; reports/final/report.md\n\n### Acceptance criteria\n\nCounts/intervals/hashes and undefined-case reasons exist; retakes are not detections; review-all fails coverage; overlap rejected.\n\n### Validation and review evidence\n\nRun metric/isolation tests, hand fixtures, shuffled labels and frozen evaluate command. Receipt: docs/evidence/ED-016.md (commands, results, hashes, hours, review).\n\n### Dependencies\n\nED-015, ED-009\n\n### Data/method pitfalls\n\nSynthetic prevalence differs from deployment. Failed performance gates remain visible even when evaluation software is correct.",
+      "estimate_hours": 12,
+      "milestone": "M3",
+      "depends_on": [
+        "ED-015",
+        "ED-009"
+      ],
+      "labels": [
+        "type:task",
+        "priority:P1"
+      ],
+      "phase": "evaluation"
+    },
+    {
+      "id": "ED-017",
+      "title": "Measure robustness and generate failure gallery",
+      "body": "### Goal\n\nExpose failure conditions.\n\n### Implementation steps\n\nRun declared pose/blur/exposure/contrast/size sweeps with <=600 correlated variants; compute worst buckets and automatically select gallery failures.\n\n### Expected output paths\n\nsrc/edgedefect/robustness.py; tests/test_robustness.py; reports/robustness/; reports/gallery/\n\n### Acceptance criteria\n\nBuckets contain counts and group intervals; selection is deterministic; unsupported probes stay separate; runtime/RSS recorded.\n\n### Validation and review evidence\n\nRun robustness tests and replay suite; review denominators and overlays. Receipt: docs/evidence/ED-017.md (commands, results, hashes, hours, review).\n\n### Dependencies\n\nED-016\n\n### Data/method pitfalls\n\nNo cherry-picking or claim that synthetic variety proves transfer to real images.",
+      "estimate_hours": 12,
+      "milestone": "M3",
+      "depends_on": [
+        "ED-016"
+      ],
+      "labels": [
+        "type:task",
+        "priority:P1"
+      ],
+      "phase": "evaluation"
+    },
+    {
+      "id": "ED-018",
+      "title": "Resolve optional public-data gate or record skip",
+      "body": "### Goal\n\nKeep external benchmark evidence optional.\n\n### Implementation steps\n\nAudit purpose-specific rights. If explicitly allowed and subset access feasible, adapt <=16 nominal train and 32 test MVTec tile images; otherwise record skip. Preserve official split and reserve nominal calibration.\n\n### Expected output paths\n\ndocs/rights-decisions.md; reports/public-data/decision.md; optional src/edgedefect/public_adapter.py and tests/test_public_adapter.py\n\n### Acceptance criteria\n\nPermission receipt or exclusion exists; no unapproved download; results are out-of-domain evidence.\n\n### Validation and review evidence\n\nReview rights; if enabled, test counts/splits/hashes and report uncertainty. Receipt: docs/evidence/ED-018.md (commands, results, hashes, hours, review).\n\n### Dependencies\n\nED-003, ED-016\n\n### Data/method pitfalls\n\nNoncommercial terms do not automatically permit product R&D; no bulk downloads, new labels or production threshold transfer.",
+      "estimate_hours": 8,
+      "milestone": "M3",
+      "depends_on": [
+        "ED-003",
+        "ED-016"
+      ],
+      "labels": [
+        "type:task",
+        "priority:P1"
+      ],
+      "phase": "rights"
+    },
+    {
+      "id": "ED-019",
+      "title": "Wire CLI and shared inspection pipeline",
+      "body": "### Goal\n\nExpose stable reproducible commands.\n\n### Implementation steps\n\nWire rights/generate/validate-data/fit/compare/calibrate/evaluate/inspect to modules; implement shared orchestration, exit codes and serialization.\n\n### Expected output paths\n\nsrc/edgedefect/cli.py; src/edgedefect/pipeline.py; tests/test_cli.py; tests/test_pipeline.py\n\n### Acceptance criteria\n\nSmoke flow works; quality failure bypasses score; outputs validate and preserve provenance.\n\n### Validation and review evidence\n\nRun CLI/pipeline tests and documented smoke sequence in a temporary run directory. Receipt: docs/evidence/ED-019.md (commands, results, hashes, hours, review).\n\n### Dependencies\n\nED-015, ED-010\n\n### Data/method pitfalls\n\nLabels never reach inference. A valid retake/review is a successful command, not an operational error.",
+      "estimate_hours": 8,
+      "milestone": "M3",
+      "depends_on": [
+        "ED-015",
+        "ED-010"
+      ],
+      "labels": [
+        "type:task",
+        "priority:P1"
+      ],
+      "phase": "interface"
+    },
+    {
+      "id": "ED-020",
+      "title": "Build local single-image browser demo",
+      "body": "### Goal\n\nMake the result inspectable.\n\n### Implementation steps\n\nImplement loopback service and plain UI with import/profile/four outcomes/overlay; add token, Host/origin checks, size limits and queue bounds.\n\n### Expected output paths\n\nsrc/edgedefect/service.py; ui/index.html; ui/app.js; ui/style.css; tests/test_service.py\n\n### Acceptance criteria\n\nOutcomes render without probability claims; overlays align; unauthorized/oversize/cross-origin requests fail; no external resources.\n\n### Validation and review evidence\n\nRun service tests; check keyboard, errors and four synthetic cases; save screenshots. Receipt: docs/evidence/ED-020.md (commands, results, hashes, hours, review).\n\n### Dependencies\n\nED-019\n\n### Data/method pitfalls\n\nNo internet-facing deployment or implicit support for other part families.",
+      "estimate_hours": 12,
+      "milestone": "M4",
+      "depends_on": [
+        "ED-019"
+      ],
+      "labels": [
+        "type:task",
+        "priority:P1"
+      ],
+      "phase": "demo"
+    },
+    {
+      "id": "ED-021",
+      "title": "Verify end-to-end behavior and failure paths",
+      "body": "### Goal\n\nConfirm consistent demo/report behavior.\n\n### Implementation steps\n\nRun generation-to-demo flow; inject corrupt bundle, wrong profile, invalid image and denied rights; compare CLI/service outputs.\n\n### Expected output paths\n\ntests/test_end_to_end.py; tests/fixtures/release/; reports/release-checks.md\n\n### Acceptance criteria\n\nDecisions/hashes match; failures never emit no_flag; reports reproduce within tolerance; public-data skip does not block.\n\n### Validation and review evidence\n\nRun end-to-end and complete tests; retain commands/results. Receipt: docs/evidence/ED-021.md (commands, results, hashes, hours, review).\n\n### Dependencies\n\nED-020, ED-017, ED-018\n\n### Data/method pitfalls\n\nSoftware correctness does not prove detection performance or customer benefit; no hand-selected replacement evidence.",
+      "estimate_hours": 10,
+      "milestone": "M4",
+      "depends_on": [
+        "ED-020",
+        "ED-017",
+        "ED-018"
+      ],
+      "labels": [
+        "type:task",
+        "priority:P1"
+      ],
+      "phase": "testing"
+    },
+    {
+      "id": "ED-022",
+      "title": "Package and benchmark first local release",
+      "body": "### Goal\n\nEnable fresh CPU installation.\n\n### Implementation steps\n\nBuild package, example bundle and offline instructions; measure 10 warmups/100 images and startup; document platform activation and bounded fallback.\n\n### Expected output paths\n\nscripts/package_release.py; docs/INSTALL.md; examples/; reports/performance.json; dist/\n\n### Acceptance criteria\n\nFresh install runs offline; notices/hashes included; latency/RSS/startup measured against targets; unsupported platforms stated.\n\n### Validation and review evidence\n\nInstall isolated environment and run smoke/evaluate/demo offline; record hardware. Receipt: docs/evidence/ED-022.md (commands, results, hashes, hours, review).\n\n### Dependencies\n\nED-021, ED-006\n\n### Data/method pitfalls\n\nNo hardware purchase or disguised accuracy changes when using reduced-resolution fallback.",
+      "estimate_hours": 12,
+      "milestone": "M4",
+      "depends_on": [
+        "ED-021",
+        "ED-006"
+      ],
+      "labels": [
+        "type:task",
+        "priority:P1"
+      ],
+      "phase": "deployment"
+    },
+    {
+      "id": "ED-023",
+      "title": "Write cards and walkthrough",
+      "body": "### Goal\n\nExplain exactly what evidence supports.\n\n### Implementation steps\n\nWrite scope, rights, generation/method, results, failure gallery and gaps; record short walkthrough; update README honestly.\n\n### Expected output paths\n\ndocs/MODEL_CARD.md; docs/DATA_CARD.md; docs/DEMO.md; README.md\n\n### Acceptance criteria\n\nSynthetic/public/customer evidence distinguished; metrics link reports; implemented/planned features separated.\n\n### Validation and review evidence\n\nReview cards against manifests/checks; follow walkthrough from fresh run. Receipt: docs/evidence/ED-023.md (commands, results, hashes, hours, review).\n\n### Dependencies\n\nED-017, ED-018, ED-022\n\n### Data/method pitfalls\n\nNo restricted thumbnails, factory guarantees or claim that no_flag certifies quality.",
+      "estimate_hours": 8,
+      "milestone": "M4",
+      "depends_on": [
+        "ED-017",
+        "ED-018",
+        "ED-022"
+      ],
+      "labels": [
+        "type:task",
+        "priority:P1"
+      ],
+      "phase": "documentation"
+    },
+    {
+      "id": "ED-024",
+      "title": "Complete month-four functional release gate",
+      "body": "### Goal\n\nDeliver reviewable v0.1.\n\n### Implementation steps\n\nRehearse installation/demo, verify notices/artifacts, write gate/notes and future publication handoff to authorized publisher; reconcile hours.\n\n### Expected output paths\n\ndocs/releases/v0.1.md; reports/release-gate.json; dist/manifest.json; docs/budget.md\n\n### Acceptance criteria\n\nGenerator/demo/metrics/limitations packaged; target month 4 within months 3–12; failed performance is labeled experimental.\n\n### Validation and review evidence\n\nExecute release checklist; archive hashes and later publication receipt only when actually published. Receipt: docs/evidence/ED-024.md (commands, results, hashes, hours, review).\n\n### Dependencies\n\nED-023, ED-022\n\n### Data/method pitfalls\n\nPlanning repository is not functional delivery. This task authorizes no remote writes; never mark failed targets passed.",
+      "estimate_hours": 10,
+      "milestone": "M4",
+      "depends_on": [
+        "ED-023",
+        "ED-022"
+      ],
+      "labels": [
+        "type:task",
+        "priority:P1"
+      ],
+      "phase": "release"
+    },
+    {
+      "id": "ED-025",
+      "title": "Add persistent review workflow",
+      "body": "### Goal\n\nSupport auditable local review.\n\n### Implementation steps\n\nChild slices: SQLite/transactions 4h; queue/endpoints 4h; UI revisions 4h; crash/idempotency tests/docs 4h. All 16h counted here only.\n\n### Expected output paths\n\nsrc/edgedefect/store.py; src/edgedefect/service.py; ui/app.js; tests/test_store.py; docs/review-workflow.md\n\n### Acceptance criteria\n\nInspection immutable; events survive restart; stale revision returns 409; retries idempotent.\n\n### Validation and review evidence\n\nRun store tests and concurrent-edit/restart walkthrough; review migration evidence. Receipt: docs/evidence/ED-025.md (commands, results, hashes, hours, review).\n\n### Dependencies\n\nED-024\n\n### Data/method pitfalls\n\nOperator feedback is not automatic ground truth; no user labeling or private corpus requirement.",
+      "estimate_hours": 16,
+      "milestone": "M5",
+      "depends_on": [
+        "ED-024"
+      ],
+      "labels": [
+        "type:epic",
+        "priority:P1"
+      ],
+      "phase": "workflow"
+    },
+    {
+      "id": "ED-026",
+      "title": "Add bounded batches and safe export",
+      "body": "### Goal\n\nSupport repeatable small batches.\n\n### Implementation steps\n\nImplement sorted import capped at 100 images, cancel/resume, per-file outcomes and CSV/JSON export; escape formula-leading strings.\n\n### Expected output paths\n\nsrc/edgedefect/batch.py; src/edgedefect/export.py; tests/test_batch_export.py; docs/batch.md\n\n### Acceptance criteria\n\nResume has no duplicates; bad files preserve valid outcomes; hashes retained; resource/path limits enforced.\n\n### Validation and review evidence\n\nTest mixed-validity batches, cancellation, traversal and spreadsheet-formula strings. Receipt: docs/evidence/ED-026.md (commands, results, hashes, hours, review).\n\n### Dependencies\n\nED-025\n\n### Data/method pitfalls\n\nOffline batch speed is not line throughput; exclude private image bytes from metadata exports.",
+      "estimate_hours": 12,
+      "milestone": "M5",
+      "depends_on": [
+        "ED-025"
+      ],
+      "labels": [
+        "type:task",
+        "priority:P1"
+      ],
+      "phase": "workflow"
+    },
+    {
+      "id": "ED-027",
+      "title": "Harden deployment and rollback",
+      "body": "### Goal\n\nMake MVP installation reproducible.\n\n### Implementation steps\n\nChild slices: Windows 4h; Linux 4h; offline bundle/compatibility/rollback 4h; resource/failure checks/docs 4h. All 16h counted here only.\n\n### Expected output paths\n\ndocs/DEPLOYMENT.md; scripts/package_release.py; tests/test_bundle_compatibility.py; reports/deployment/\n\n### Acceptance criteria\n\nSupported clean installs run offline; incompatible bundles fail; rollback works; actual platform evidence recorded.\n\n### Validation and review evidence\n\nRun bundle tests and fresh-environment install/rollback checks. Receipt: docs/evidence/ED-027.md (commands, results, hashes, hours, review).\n\n### Dependencies\n\nED-026, ED-022\n\n### Data/method pitfalls\n\nNo hardware purchase or untested support claim; narrow supported platforms if unavailable while retaining local CPU fallback.",
+      "estimate_hours": 16,
+      "milestone": "M5",
+      "depends_on": [
+        "ED-026",
+        "ED-022"
+      ],
+      "labels": [
+        "type:epic",
+        "priority:P1"
+      ],
+      "phase": "deployment"
+    },
+    {
+      "id": "ED-028",
+      "title": "Rehearse usability and optional feedback",
+      "body": "### Goal\n\nAssess workflow understanding and benefit.\n\n### Implementation steps\n\nChild slices: protocol 4h; timed self-rehearsal 4h; up to three optional feedback sessions/coordination 4h; analysis/copy fixes 4h. Without participants use feedback slice for accessibility/error rehearsal. Total 16h only.\n\n### Expected output paths\n\ndocs/product/usability-protocol.md; reports/usability.md; ui/\n\n### Acceptance criteria\n\nComparator/tool times, misunderstandings and evidence source recorded; absent independent feedback explicit.\n\n### Validation and review evidence\n\nReplay three outcome scenarios; rerun affected service tests; retain permitted feedback evidence. Receipt: docs/evidence/ED-028.md (commands, results, hashes, hours, review).\n\n### Dependencies\n\nED-025, ED-027, ED-002\n\n### Data/method pitfalls\n\nNo fabricated interviews or customer-validation claim from self-testing; outreach requires authorization; no dataset requested.",
+      "estimate_hours": 16,
+      "milestone": "M5",
+      "depends_on": [
+        "ED-025",
+        "ED-027",
+        "ED-002"
+      ],
+      "labels": [
+        "type:epic",
+        "priority:P1"
+      ],
+      "phase": "validation"
+    },
+    {
+      "id": "ED-029",
+      "title": "Prepare pilot protocol and resolve evidence gaps",
+      "body": "### Goal\n\nReach readiness without a partner dependency.\n\n### Implementation steps\n\nChild slices: domain/error-cost protocol 4h; existing-evidence/rights audit 4h; authorized existing labeled-data check or synthetic rehearsal 4h; readiness/gap memo 4h. Total 16h only.\n\n### Expected output paths\n\ndocs/PILOT_PROTOCOL.md; reports/customer/readiness.md; reports/customer/evidence-matrix.json\n\n### Acceptance criteria\n\nGround-truth source, costs, confidence bounds and stops explicit; absent data means commercialization hold, not technical failure.\n\n### Validation and review evidence\n\nReview denominators/provenance or record unavailable evidence; label rehearsal. Receipt: docs/evidence/ED-029.md (commands, results, hashes, hours, review).\n\n### Dependencies\n\nED-028, ED-018\n\n### Data/method pitfalls\n\nNo new collection/labeling, paid annotator or mandatory private data; workflow feedback cannot prove accuracy.",
+      "estimate_hours": 16,
+      "milestone": "M6",
+      "depends_on": [
+        "ED-028",
+        "ED-018"
+      ],
+      "labels": [
+        "type:epic",
+        "priority:P1"
+      ],
+      "phase": "validation"
+    },
+    {
+      "id": "ED-030",
+      "title": "Implement retention, diagnostics and recovery",
+      "body": "### Goal\n\nBound storage and recover locally.\n\n### Implementation steps\n\nImplement metadata logs, retention caps, dry-run scoped purge and backup/restore; document rollback; test synthetic operational shifts.\n\n### Expected output paths\n\nsrc/edgedefect/operations.py; tests/test_operations.py; docs/OPERATIONS.md\n\n### Acceptance criteria\n\nImage caps 7 days/200MiB and metadata 30 days enforced; purge stays in run root; backup restores; logs omit images/notes.\n\n### Validation and review evidence\n\nTest clock/size boundaries, invalid paths, restore and corrupt models. Receipt: docs/evidence/ED-030.md (commands, results, hashes, hours, review).\n\n### Dependencies\n\nED-027\n\n### Data/method pitfalls\n\nSynthetic drift tests verify alerts, not factory drift detection; no telemetry/upload.",
+      "estimate_hours": 12,
+      "milestone": "M6",
+      "depends_on": [
+        "ED-027"
+      ],
+      "labels": [
+        "type:task",
+        "priority:P1"
+      ],
+      "phase": "operations"
+    },
+    {
+      "id": "ED-031",
+      "title": "Audit local security and artifact rights",
+      "body": "### Goal\n\nVerify actual MVP safeguards.\n\n### Implementation steps\n\nAudit loopback/token/Host/origin controls, decompression limits, dependency artifacts, notices and provenance; repair bounded findings.\n\n### Expected output paths\n\ntests/test_security.py; licenses/assets.json; licenses/NOTICE.txt; reports/security-review.md\n\n### Acceptance criteria\n\nUnauthorized requests fail; inputs bounded; packaged assets have allowed-use evidence; unresolved findings disclosed.\n\n### Validation and review evidence\n\nRun security tests and compare package contents to notice/rights register. Receipt: docs/evidence/ED-031.md (commands, results, hashes, hours, review).\n\n### Dependencies\n\nED-030, ED-003\n\n### Data/method pitfalls\n\nRuntime terms do not grant dataset/weight rights; service remains local-only; no deadline-driven reinterpretation of unknown permissions.",
+      "estimate_hours": 12,
+      "milestone": "M6",
+      "depends_on": [
+        "ED-030",
+        "ED-003"
+      ],
+      "labels": [
+        "type:task",
+        "priority:P1"
+      ],
+      "phase": "security"
+    },
+    {
+      "id": "ED-032",
+      "title": "Close readiness and decide go/hold/stop",
+      "body": "### Goal\n\nFinish technical work with honest commercial limits.\n\n### Implementation steps\n\nAssemble v0.2 evidence; run smoke/recovery checks; estimate setup/support cost; reconcile hours and prepare authorized publisher handoff. Reforecast slipped work using remaining original budget only.\n\n### Expected output paths\n\ndocs/releases/v0.2.md; reports/final-decision.md; docs/budget.md; dist/manifest.json; README.md\n\n### Acceptance criteria\n\nReadiness or prototype limits evidenced; missing external evidence means commercial hold; work+reserve remains 416h; month-12 deadline explicit.\n\n### Validation and review evidence\n\nRun full suite/deployment smoke; review evidence matrix and dependency receipts. Receipt: docs/evidence/ED-032.md (commands, results, hashes, hours, review).\n\n### Dependencies\n\nED-029, ED-031, ED-026\n\n### Data/method pitfalls\n\nNo claimed pilot without observations; planning is not functional delivery; record deadline failure honestly.",
+      "estimate_hours": 12,
+      "milestone": "M6",
+      "depends_on": [
+        "ED-029",
+        "ED-031",
+        "ED-026"
+      ],
+      "labels": [
+        "type:task",
+        "priority:P1"
+      ],
+      "phase": "release"
+    }
+  ]
+}
